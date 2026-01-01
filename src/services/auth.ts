@@ -7,6 +7,15 @@ interface LoginDetails {
     password: string
 }
 
+interface UserData {
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string,
+    userimage: File | null
+      
+}
+
 
 
 export const login = async ({email, password}: LoginDetails) => {
@@ -31,4 +40,39 @@ export const login = async ({email, password}: LoginDetails) => {
         
     }
    
+}
+
+
+export const register = async (userData : UserData) => {
+    const {firstname, lastname, email, password, userimage} = userData
+    
+    alert('Button clicked')
+
+
+    try {
+
+        const res = await api.post( 
+            'auth/register',
+            {
+                firstname,
+                lastname,
+                email,
+                password,
+                userimage
+            },
+            {
+                headers: {
+                 'Content-Type': 'multipart/form-data'
+                }
+            }
+
+        )
+
+        return res
+
+    } catch (err) {
+        console.log(err)
+    }
+
+
 }
