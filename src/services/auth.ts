@@ -12,19 +12,23 @@ interface LoginDetails {
 export const login = async ({email, password}: LoginDetails) => {
 
     try {
-        const result = await api.post(
-            '/auth/login',
+
+        
+        const res = await api.post(
+            'auth/login',
             {
                 email: email,
                 password: password
             }
         )
 
-        console.log(result)
+        // alert(`This is the result:\n${JSON.stringify(result.data, null, 2)}`)
+        return res
 
         
     } catch (err) {
         console.log(err)
+        
     }
    
 }

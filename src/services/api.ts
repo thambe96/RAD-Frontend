@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 
 
 
@@ -7,12 +7,14 @@ const api = axios.create({
 })
 
 api.interceptors.request.use((config) => {
+
     const token = localStorage.getItem("accessToken")
-    const PUBLIC_ENDPOINTS = ['/auth/login', '/auth/register']
+    const PUBLIC_ENDPOINTS = ['auth/login', 'auth/register']
 
     const isPublic: boolean = PUBLIC_ENDPOINTS.some((publicURLPrefix: string) => {
         config.url?.includes(publicURLPrefix)
     })
+
 
     if (token && !isPublic) {
         config.headers.Authorization = `Bearer ${token}`
@@ -21,6 +23,19 @@ api.interceptors.request.use((config) => {
     return config
 
 })
+
+api.interceptors.response.use((response) => {
+    return response
+}, (err: AxiosError) => {
+ 
+    alert(err.message)
+    alert("Status Code: " + err.status)
+    return err
+}
+
+)
+
+
 
 
 
