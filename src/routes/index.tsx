@@ -1,11 +1,17 @@
 
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Login from '../pages/Login'
 import Register from "../pages/Register"
 import Layout from "../components/Layout"
 import Home from "../pages/Home"
+import AdminDashBoard from "../pages/AdminDashBoard"
+import PostReview from "../pages/PostReview"
+
+
+
 export default function Router() {
+
+
 
     const router = createBrowserRouter([
         {   
@@ -23,7 +29,16 @@ export default function Router() {
                 {
                     path: 'home',
                     element: <Home />
+                },
+                {
+                    path: 'admin',
+                    element: <AdminDashBoard />
+                }, 
+                {
+                    path: 'movieReview',
+                    element: <PostReview />
                 }
+                
             ]
              
         }
