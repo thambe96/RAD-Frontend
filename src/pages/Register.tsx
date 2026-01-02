@@ -1,9 +1,12 @@
 import { useState, type ChangeEvent, type FormEvent, useRef } from "react"
 import { register } from "../services/auth"
+import { useNavigate } from "react-router-dom"
 
 
 export default function Register() {
 
+
+    const navigate = useNavigate()
     const [firstname, setFirstName] = useState("")
     const [lastname, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -45,6 +48,7 @@ export default function Register() {
         try {
             const res = await register(userData)
             console.log(res)
+            navigate("/")
             // alert(res?.data.message)
             // alert(res?.data.data)
         } catch (err) {
@@ -87,10 +91,10 @@ export default function Register() {
 
                 {
                     loading ? (
-                        <>
+                        <div className="flex item-center justify-center">
                             <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                            Registering...
-                        </> 
+                            <span>Registering...</span>
+                        </div> 
                     ) : (
                         "Register"
                     )

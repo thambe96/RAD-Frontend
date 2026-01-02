@@ -11,10 +11,9 @@ api.interceptors.request.use((config) => {
     const token = localStorage.getItem("accessToken")
     const PUBLIC_ENDPOINTS = ['auth/login', 'auth/register']
 
-    const isPublic: boolean = PUBLIC_ENDPOINTS.some((publicURLPrefix: string) => {
-        config.url?.includes(publicURLPrefix)
-    })
-
+    const isPublic: boolean = PUBLIC_ENDPOINTS.some((publicURLPrefix: string) => config.url?.includes(publicURLPrefix))
+    // I had used {} in the .some(callback) function -> If you write it like this in the one line --> implicitly returns true if this logic satisfies
+    alert(isPublic)
 
     if (token && !isPublic) {
         config.headers.Authorization = `Bearer ${token}`

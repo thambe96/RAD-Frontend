@@ -73,3 +73,16 @@ export const register = async (userData : UserData) => {
 
 
 }
+
+
+export const getUserDetails = async () => {
+
+    try {
+        const res = await api.get('auth/getUser')
+        return res.data
+
+    } catch (err) {
+        console.log(err)
+    }
+    
+}
