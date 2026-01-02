@@ -12,6 +12,10 @@ export default function Register() {
     const [preview, setPreview] = useState("")
     const fileInputRef = useRef<HTMLInputElement | null>(null)
 
+    const [loading, setLoading] = useState(false)
+
+
+
     const handleUserImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         const image = e.target.files?.[0]
@@ -21,8 +25,13 @@ export default function Register() {
         }
     }
 
+
+
+
     const handleResistration = async (e: FormEvent) => {
         e.preventDefault()
+
+        setLoading(true)
 
         const userData = {
             firstname,
@@ -33,11 +42,21 @@ export default function Register() {
 
         }
 
-        const res = await register(userData)
-        alert(res?.data.message)
-        alert(res?.data.data)
+        try {
+            const res = await register(userData)
+            console.log(res)
+            // alert(res?.data.message)
+            // alert(res?.data.data)
+        } catch (err) {
+            console.log(err)
+        } finally {
+            setLoading(false)
+        }
 
+        
     }
+
+
 
   return (
     <div>
@@ -62,7 +81,23 @@ export default function Register() {
             <input type="email" placeholder="email" value={email} onChange={(e) => {setEmail(e.target.value)}}/>
             <input type="password" placeholder="password" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
             
-            <button type="submit" className="bg-green-500 p-2">Register</button>
+            <button type="submit" disabled = {loading} className={`px-4 py-2 rounded text-white flex item-center justify-center gap-2
+                    ${loading ? "bg-gray-400 cursor-not-allowed": "bg-blue-600 hover:bg-blue-700"}`}
+                >
+
+                {
+                    loading ? (
+                        <>
+                            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            Registering...
+                        </> 
+                    ) : (
+                        "Register"
+                    )
+                
+                }
+                
+            </button>
         </form>
         
         

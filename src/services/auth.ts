@@ -46,9 +46,6 @@ export const login = async ({email, password}: LoginDetails) => {
 export const register = async (userData : UserData) => {
     const {firstname, lastname, email, password, userimage} = userData
     
-    alert('Button clicked')
-
-
     try {
 
         const res = await api.post( 
