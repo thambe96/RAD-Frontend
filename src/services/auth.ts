@@ -86,3 +86,8 @@ export const getUserDetails = async () => {
     }
     
 }
+
+export const refreshtokens = async (refreshToken: string) => {
+    const res = await api.post('auth/refrsh', {token: refreshToken})
+    return res.data
+}

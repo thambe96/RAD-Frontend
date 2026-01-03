@@ -16,6 +16,9 @@ export const AuthProvider = ({children}: any) => {
 
         const accesToken = localStorage.getItem("accessToken")
 
+        // localStorage.removeItem("accessToken")
+        // localStorage.removeItem("refreshToken")
+
         // const fetchUserData = async () => {
 
         //     try {
@@ -42,6 +45,8 @@ export const AuthProvider = ({children}: any) => {
         // console.log("Loading:", loading)
 
         if (accesToken) { 
+
+            alert("This is form useEffect: " + accesToken)
 
             getUserDetails()
             .then ((res) => {
