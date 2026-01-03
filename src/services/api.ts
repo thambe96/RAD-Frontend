@@ -13,7 +13,7 @@ api.interceptors.request.use((config) => {
 
     const isPublic: boolean = PUBLIC_ENDPOINTS.some((publicURLPrefix: string) => config.url?.includes(publicURLPrefix))
     // I had used {} in the .some(callback) function -> If you write it like this in the one line --> implicitly returns true if this logic satisfies
-    alert(isPublic)
+    // alert(isPublic)
 
     if (token && !isPublic) {
         config.headers.Authorization = `Bearer ${token}`
@@ -27,8 +27,8 @@ api.interceptors.response.use((response) => {
     return response
 }, (err: AxiosError) => {
  
-    alert(err.message)
-    alert("Status Code: " + err.status)
+    // alert(err.message)
+    // alert("Status Code: " + err.status)
     return err
 }
 

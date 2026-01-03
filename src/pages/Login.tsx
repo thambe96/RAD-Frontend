@@ -1,25 +1,48 @@
 import { useState, type FormEvent } from "react"
-import { login } from "../services/auth"
+import { getUserDetails, login } from "../services/auth"
+import { useAuth } from "../context/authContext"
 // import axios from "axios"
 
 
 export default function Login() {
-
+    
+    const { setUser } = useAuth()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const handleLogin = async (e: FormEvent) => {
         e.preventDefault()
-        setEmail("")
-        setPassword("")
+      
+
+        if (!email || !password) {
+            // alert("All fields are required!")
+            return
+        }
+
 
         try {
             const res = await login({email, password})
-            // alert(`This is the results Object: ${res?.data}`)
-            // alert(`This is the results Object: ${res?.message}`)
-            alert("Backend Message: " + res?.data.message)
-            alert("Access Token: " + res?.data.data.accessToken)
-            alert("Refresh Token: " + res?.data.data.refreshToken)
+
+            if (!res?.data.data.accessToken) {
+                // alert("Login Faild")
+                return
+            }
+
+            // alert("login req access: " + res.data.data.accessToken)
+            // alert("login req refresh: " + res.data.data.refreshToken)
+
+            localStorage.setItem("accessToken", res?.data.data.accessToken)
+            localStorage.setItem("refreshToken", res?.data.data.refreshToken)
+
+            const userDetails = await getUserDetails()
+            setUser(userDetails.data)
+            console.log("User Details message: " + userDetails.message)
+            console.log("User Details dataObject: " + userDetails.data.firstname)
+
+            // alert("User Details message: " + userDetails.message)
+            // alert("User Details dataObject: " + userDetails.data)
+            
+       
         } catch (err) {
             console.log(err)
             
