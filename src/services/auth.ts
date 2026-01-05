@@ -91,3 +91,14 @@ export const refreshtokens = async (refreshToken: string) => {
     const res = await api.post('auth/refrsh', {token: refreshToken})
     return res.data
 }
+
+export const updateDefaultStatus = async (id: string) => {
+    const res = await api.patch(`auth/updateDefaultStatus/${id}`)
+    return res.data
+}
+
+export const getPendingStatusList = async () =>  {
+    const res = await api.get('auth/getPendigStatusProfs')
+    console.log("This is from getPendingStatus auth function : ", res.data[0])
+    return res.data
+}
