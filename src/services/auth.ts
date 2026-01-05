@@ -102,3 +102,8 @@ export const getPendingStatusList = async () =>  {
     console.log("This is from getPendingStatus auth function : ", res.data[0])
     return res.data
 }
+
+export const approveContributorReq = async (id: string, status: string) => {
+    const res = await api.patch(`auth/approvRequest?id=${id}&status=${status}`)
+    return res.data
+}

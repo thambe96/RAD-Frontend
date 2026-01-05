@@ -8,7 +8,7 @@ export default function RequestBtn() {
 
 
     const handleRequestBtn = async () => {
-        alert("hi bye!! "+  user._id)
+        // alert("hi bye!! "+  user._id)
 
         // if (user?.status === "DEFAULT" ) {
 
@@ -34,7 +34,11 @@ export default function RequestBtn() {
 
 
     if (user?.status === 'PENDING') {
-        return <div className="p-2 bg-purple-300 rounded-lg hover:bg-purple-400 hover:text-white cursor-pointer">PENDING</div>
+        return <div className="p-1 bg-red-200 rounded-lg hover:bg-red-400 hover:text-white cursor-pointer">PENDING</div>
+    }
+
+    if (user?.status === 'APPROVED') {
+        return <div className="p-1 bg-green-200 rounded-lg text-sm hover:bg-green-400 hover:text-white cursor-pointer">APPROVED</div>
     }
 
 
@@ -42,8 +46,8 @@ export default function RequestBtn() {
   return (
 
     
-    <button onClick={handleRequestBtn} className="h-full bg-gray-300">
-        Become Cotributor
+    <button onClick={handleRequestBtn} className="p-1 bg-purple-300 rounded-lg text-sm hover:bg-red-200 hover:text-white cursor-pointer">
+        Become-Cotributor
     </button>
        
   )

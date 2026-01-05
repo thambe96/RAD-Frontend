@@ -1,11 +1,28 @@
 import { useEffect, useState } from "react"
-import { getPendingStatusList } from "../../services/auth"
+import { getPendingStatusList, approveContributorReq } from "../../services/auth"
 import PendingContributorReq from "../../components/admin/PendingContributorReq"
+import { useAuth } from "../../context/authContext"
 
 export default function ManageRequests() {
-    const [pendingContributors, setPendingContributors] = useState([])
 
-    useEffect(() => {
+    type User = {
+      _id: string
+      firstname: string
+      lastname: string
+      email: string
+      password: string
+      roles: string[]
+      imageURL: string
+      status: string
+      __v: number
+    }
+
+
+    const [pendingContributors, setPendingContributors] = useState<User[]>([])
+    // const {setUser} = useAuth() 
+
+
+    const updatePendingContributorList = () => {
 
       try {
 
@@ -27,7 +44,41 @@ export default function ManageRequests() {
         console.error(error)
       }
 
-    }, [])
+    }
+
+    useEffect(updatePendingContributorList, [])
+
+
+
+
+
+
+
+    const handleApproval = (userId: string) => {
+        // alert('hi Approved: id : ' + userId)
+
+      const fetchResults = async () => {
+
+          try {
+              alert("userId: " + userId)
+              const res =  await approveContributorReq(userId, "APPROVED")
+              console.log("APPROVED USER: ", res)
+              // setUser(res)
+          } catch (err) {
+              alert("faild request")
+              console.error(err)
+          }
+          
+      }
+
+      fetchResults()
+      updatePendingContributorList()
+
+
+    }
+
+
+
 
 
   return (
@@ -37,10 +88,12 @@ export default function ManageRequests() {
       pendingContributors.map(user => (
 
         <PendingContributorReq 
-          key={user?._id}
+          key = {user?._id}
           userImage = {user?.imageURL}
           username = {user?.firstname}
           status = {user?.status}
+          userId = {user?._id}
+          onApprove={handleApproval}
         />
 
       ))
@@ -48,44 +101,6 @@ export default function ManageRequests() {
     } 
 
 
-{/* 
-      
-        <PendingContributorReq 
-          userImage = 'https://res.cloudinary.com/dk0c1qe0x/image/upload/v1767293501/gwwty6fmefkcglekrxi3.jpg'
-          username = "mehedi"
-          status = "Pending"
-        />
-        <PendingContributorReq 
-          userImage = 'https://res.cloudinary.com/dk0c1qe0x/image/upload/v1767293501/gwwty6fmefkcglekrxi3.jpg'
-          username = "mehedi"
-          status = "Pending"
-        />
-
-        <PendingContributorReq 
-          userImage = 'https://res.cloudinary.com/dk0c1qe0x/image/upload/v1767293501/gwwty6fmefkcglekrxi3.jpg'
-          username = "mehedi"
-          status = "Pending"
-        />
-        <PendingContributorReq 
-          userImage = 'https://res.cloudinary.com/dk0c1qe0x/image/upload/v1767293501/gwwty6fmefkcglekrxi3.jpg'
-          username = "mehedi"
-          status = "Pending"
-        />
-        <PendingContributorReq 
-          userImage = 'https://res.cloudinary.com/dk0c1qe0x/image/upload/v1767293501/gwwty6fmefkcglekrxi3.jpg'
-          username = "mehedi"
-          status = "Pending"
-        />
-        <PendingContributorReq 
-          userImage = 'https://res.cloudinary.com/dk0c1qe0x/image/upload/v1767293501/gwwty6fmefkcglekrxi3.jpg'
-          username = "mehedi"
-          status = "Pending"
-        />
-        <PendingContributorReq 
-          userImage = 'https://res.cloudinary.com/dk0c1qe0x/image/upload/v1767293501/gwwty6fmefkcglekrxi3.jpg'
-          username = "mehedi"
-          status = "Pending"
-        />  */}
 
     </div>
 
