@@ -2,12 +2,21 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import Login from '../pages/Login'
 import Register from "../pages/Register"
-import Layout from "../components/Layout"
-import Home from "../pages/Home"
-import AdminDashBoard from "../pages/AdminDashBoard"
-import PostReview from "../pages/PostReview"
+
+import PostReview from "../pages/admin/ManageReviesPosts"
 import type { ReactNode } from "react"
 import { useAuth } from "../context/authContext"
+import UserLayout from "../components/user/UserLayout"
+import UserHome from "../pages/user/UserHome"
+import Contributors from "../pages/user/Contributors"
+import MyReviews from "../pages/user/MyReviews"
+import AddReview from "../pages/user/AddReview"
+import WishList from "../pages/user/WishList"
+import AdminLayout from "../components/admin/AdminLayout"
+import ManageRequests from "../pages/admin/ManageRequests"
+import ManageReviesPosts from "../pages/admin/ManageReviesPosts"
+import ManageReports from "../pages/admin/ManageReports"
+import ManageUserProfiles from "../pages/admin/ManageUserProfiles"
 
 
 type RequireAuthTypes = {children: ReactNode; roles?: string[]}
@@ -65,28 +74,58 @@ export default function Router() {
             element : <Register/>
         },
         {
-            path : '/layout',
-            element : <Layout />,
+            path : '/adminlayout',
+            element : <AdminLayout />
+                /* <RequireAuth roles={["ADMIN"]}>
+                    <AdminLayout />
+                </ RequireAuth> */,
             children: [
                 {
-                    path: 'home',
-                    element: <Home />
+                    path: 'managerequests',
+                    element: <ManageRequests />
                 },
                 {
-                    path: 'admin',
-                    element: 
-                    <RequireAuth roles={["ADMIN"]}>
-                        <AdminDashBoard />
-                    </ RequireAuth>
-                    
+                    path: 'managereviewposts',
+                    element: <ManageReviesPosts />
+                 
                 }, 
                 {
-                    path: 'movieReview',
-                    element: <PostReview />
+                    path: 'manageprofiles',
+                    element: <ManageUserProfiles />
+                }, 
+                {
+                    path: 'managereports',
+                    element: <ManageReports />
                 }
                 
             ]
              
+        },
+        {
+            path: '/userLayout',
+            element: <UserLayout />,
+            children: [
+                {
+                    path: 'userHome',
+                    element: <UserHome />
+                },
+                {
+                    path: 'contributors',
+                    element: <Contributors />
+                }, 
+                {
+                    path: 'wishlist',
+                    element: <WishList/>
+                },
+                {
+                    path: 'myreviews',
+                    element: <MyReviews/>
+                },
+                {
+                    path: 'addreview',
+                    element: <AddReview />
+                }
+            ]
         }
     ])
 

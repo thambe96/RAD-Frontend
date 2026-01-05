@@ -46,7 +46,7 @@ export const AuthProvider = ({children}: any) => {
 
         if (accesToken) { 
 
-            alert("This is form useEffect: " + accesToken)
+            // alert("This is form useEffect: " + accesToken)
 
             getUserDetails()
             .then ((res) => {

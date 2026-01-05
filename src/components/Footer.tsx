@@ -1,6 +1,6 @@
 
 export default function Footer() {
   return (
-    <div>This Footer!!!</div>
+    <div className="font-semi-bold text-center">All rights reserved - MovieCritic</div>
   )
 }
