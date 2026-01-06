@@ -21,7 +21,8 @@ export default function AddReview() {
         "TOMANCE",
         "DETECTIVE",
         "WAR",
-        "DRAMA"
+        "DRAMA",
+        "HORROR"
 
     ]
 
@@ -53,21 +54,21 @@ export default function AddReview() {
    
 
   return (
-    <div>
+    <div className="w-full flex flex-col items-center">
 
-        <form onSubmit = {handlePostSubmission} className="flex flex-col">
+        <form onSubmit = {handlePostSubmission} className="w-3/4 flex flex-col border-2 border-purple-100 mt-10 mb-10">
 
 
             <div className="flex justify-center">
                 {
                  previeMovieImage ? <img 
                     src= {previeMovieImage} alt="movie" 
-                    className="w-36 h-36 rounded-lg object-cover border-2 border-purple-500 overflow-hidden" 
+                    className="w-50 h-60  object-cover border-2 border-purple-500 overflow-hidden mt-10 mb-10" 
                     onClick={() => movieImageInputRef.current?.click()} /> :
                     <div 
-                        className="w-36 h-36 rounded-full object-cover border-2 border-purple-500 overflow-hidden" 
+                        className="w-50 h-60  object-cover border-2 border-purple-500 overflow-hidden text-center mt-10 mb-10" 
                         onClick={() => movieImageInputRef.current?.click()}>
-                        
+                        select image
                     </div>
                 }
 
@@ -75,7 +76,7 @@ export default function AddReview() {
             </div>
             
 
-            <div className="flex flex-col">
+            <div className="flex flex-col ml-10 mr-10">
                 <label>Movie Title</label>
                 <input type="text" placeholder="title" className="w-full h-10 border-2 border-purple-200 rounded-lg"
                     onChange={(e) =>setMovieTitle(e.target.value)}
@@ -86,7 +87,7 @@ export default function AddReview() {
                 onChange={(e) =>setMovieContent(e.target.value)}
             /> */}
 
-            <div className="flex flex-col">
+            <div className="flex flex-col ml-10 mr-10">
                 <label> Movie Content</label>
                 <textarea 
                     value={movieContent} 
@@ -99,11 +100,11 @@ export default function AddReview() {
 
             <label htmlFor="">Slect Category</label>
 
-            <div className="flex flex-col border-4 border-red-500 items-center">
+            <div className="flex flex- justify-evenly gap-6 border-4 border-red-500 items-center ml-10 mr-10">
 
                 {
                     categories.map(category => 
-                        <div key={category} className="border-4 border-cyan-200 mb-2 mt-2 flex justify-between w-30">
+                        <div key={category} className="border-4 border-cyan-200 mb-2 mt-2 flex flex-wrap gap-2 justify-center w-30">
                             <input 
                                 type="checkbox"
                                 id = {category}
