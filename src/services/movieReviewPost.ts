@@ -39,3 +39,16 @@ export const createMovieReviewPost = async (movieReviePostData: MovieReviewPostD
     }
 
 }
+
+export const getAllMovieReviews = async () => {
+
+    try {
+
+        const res = await api.get('movieReviewPost/getAllMovieReviews')
+        return res.data
+
+    } catch (error) {
+        console.error(error)
+    }
+
+}
