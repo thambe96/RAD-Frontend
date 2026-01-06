@@ -1,4 +1,6 @@
 import { useRef, useState, type ChangeEvent, type FormEvent } from "react"
+import { useAuth } from "../../context/authContext"
+import { createMovieReviewPost } from "../../services/movieReviewPost"
 
 
 
@@ -11,6 +13,9 @@ export default function AddReview() {
     const movieImageInputRef = useRef<HTMLInputElement | null>(null)
     const [previeMovieImage, setPrevieMovieImage] = useState("")
     const [selectedCategories, setSelectedCatogories] = useState<string[]>([])
+    const [movieDetailsSavingStatus, setMovieDetailsSavingStatus] = useState(false)
+
+    const {user} = useAuth()
 
 
 
@@ -46,9 +51,34 @@ export default function AddReview() {
 
     }
 
-    const handlePostSubmission = (e: FormEvent) => {
+    const handlePostSubmission = async (e: FormEvent) => {
         e.preventDefault()
-        alert("Do you want to submit the review!")
+
+        setMovieDetailsSavingStatus(true)
+
+        const movieReviePostData = {
+            title: movieTitle,
+            content: movieContent,
+            categories: selectedCategories,
+            userimage: movieImage,
+            contributor: user?._id
+
+        }
+
+        try {
+
+            const res = await createMovieReviewPost(movieReviePostData)
+            console.log(res)
+
+
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setMovieDetailsSavingStatus(false)
+        }
+        
+
+
     }
 
    
@@ -78,7 +108,7 @@ export default function AddReview() {
 
             <div className="flex flex-col ml-10 mr-10">
                 <label>Movie Title</label>
-                <input type="text" placeholder="title" className="w-full h-10 border-2 border-purple-200 rounded-lg"
+                <input type="text" value={movieTitle} placeholder="title" className="w-full h-10 border-2 border-purple-200 rounded-lg"
                     onChange={(e) =>setMovieTitle(e.target.value)}
                 />
             </div>
@@ -122,9 +152,26 @@ export default function AddReview() {
 
             </div>
             
-            <div>
-                <button type="submit" className="p-2 bg-green-400">Post</button>
-                <button className="p-2 bg-red-400" onClick={(e) => e.preventDefault()}>Cancel</button>
+            <div  className="flex justify-center gap-4 mt-5 mb-5">
+                        
+                <button type="submit" disabled = {movieDetailsSavingStatus} className={`px-4 py-2 rounded text-white flex item-center justify-center gap-2
+                        ${movieDetailsSavingStatus ? "bg-gray-400 cursor-not-allowed": "bg-blue-600 hover:bg-blue-700"}`}
+                    >
+
+                    {
+                        movieDetailsSavingStatus ? (
+                            <div className="flex item-center justify-center">
+                                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                <span>Registering...</span>
+                            </div> 
+                        ) : (
+                            "Register"
+                        )
+                    
+                    }
+                    
+                </button>
+                <button className="px-4 py-2 rounded text-white flex item-center justify-center gap-2 bg-red-600 hover:bg-red-700" onClick={(e) => e.preventDefault()}>Cancel</button>
 
             </div>
             
