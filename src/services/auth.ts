@@ -107,3 +107,9 @@ export const approveContributorReq = async (id: string, status: string) => {
     const res = await api.patch(`auth/approvRequest?id=${id}&status=${status}`)
     return res.data
 }
+
+
+export const getContributors = async () => {
+    const res = await api.get('auth/getContributors')
+    return res.data
+}

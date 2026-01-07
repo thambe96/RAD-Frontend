@@ -52,3 +52,17 @@ export const getAllMovieReviews = async () => {
     }
 
 }
+
+
+export const getMyMovieReviews = async (contributorId: string) => {
+
+     try {
+        console.log("request handler: " + contributorId)
+        const res = await api.get(`movieReviewPost/getMyMovieReviews/${contributorId}`)
+        return res.data
+
+    } catch (error) {
+        console.error(error)
+    }
+
+}
