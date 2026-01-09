@@ -18,6 +18,7 @@ import ManageReviesPosts from "../pages/admin/ManageReviesPosts"
 import ManageReports from "../pages/admin/ManageReports"
 import ManageUserProfiles from "../pages/admin/ManageUserProfiles"
 import MovieRevieExpand from "../pages/user/MovieRevieExpand"
+import Donation from "../pages/user/Donation"
 
 
 type RequireAuthTypes = {children: ReactNode; roles?: string[]}
@@ -129,6 +130,10 @@ export default function Router() {
                 {
                     path: 'movieDetail/:id',
                     element: <MovieRevieExpand />
+                }, 
+                {
+                    path: 'donation',
+                    element: <Donation/>
                 }
             ]
         }

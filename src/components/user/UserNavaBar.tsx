@@ -13,20 +13,23 @@ export default function UserNavaBar() {
 
   return (
     <div className="w-full flex justify-evenly items-center bg-purple-200">
+
+        <div className="h-full">
+            <UserDetails />
+        </div>
         <div className="flex justify-evenly items-center gap-5">
-            <NavLink to={'/userLayout/userHome'}  className={navLinkStyels}>HOME</NavLink>
-            <NavLink to={'/userLayout/contributors'} className={navLinkStyels}>CONTRIBUTORS</NavLink>
-            {user?.status === "DEFAULT" && <NavLink to={'/userLayout/wishlist'} className={navLinkStyels}>WISHLIST</NavLink>}
-            {user?.status === "APPROVED" && <NavLink to={'/userLayout/myreviews'} className={navLinkStyels}>MYREVIEWS</NavLink>}
-            {user?.status === "APPROVED" &&  <NavLink to={'/userLayout/addreview'}className={navLinkStyels}>ADDREVIES</NavLink>}
+            <NavLink to={'/userLayout/userHome'}  className={navLinkStyels}>Home</NavLink>
+            <NavLink to={'/userLayout/contributors'} className={navLinkStyels}>Contributors</NavLink>
+            <NavLink to={'/userLayout/donation'} className={navLinkStyels}>Donation</NavLink>
+            {user?.status === "DEFAULT" && <NavLink to={'/userLayout/wishlist'} className={navLinkStyels}>Wish-list</NavLink>}
+            {user?.status === "APPROVED" && <NavLink to={'/userLayout/myreviews'} className={navLinkStyels}>My-review</NavLink>}
+            {user?.status === "APPROVED" &&  <NavLink to={'/userLayout/addreview'}className={navLinkStyels}>Add-Review</NavLink>}
         </div>
         <div>
             <RequestBtn />
         </div>
     
-        <div className="h-full">
-            <UserDetails />
-        </div>
+  
 
         <div>
             <LogoutBtn/>
