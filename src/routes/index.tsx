@@ -17,6 +17,7 @@ import ManageRequests from "../pages/admin/ManageRequests"
 import ManageReviesPosts from "../pages/admin/ManageReviesPosts"
 import ManageReports from "../pages/admin/ManageReports"
 import ManageUserProfiles from "../pages/admin/ManageUserProfiles"
+import MovieRevieExpand from "../pages/user/MovieRevieExpand"
 
 
 type RequireAuthTypes = {children: ReactNode; roles?: string[]}
@@ -124,6 +125,10 @@ export default function Router() {
                 {
                     path: 'addreview',
                     element: <AddReview />
+                },
+                {
+                    path: 'movieDetail/:id',
+                    element: <MovieRevieExpand />
                 }
             ]
         }

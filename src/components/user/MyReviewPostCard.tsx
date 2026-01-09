@@ -1,3 +1,5 @@
+
+
 type MyReviewPostCardData = {
   imageURL:string
   title: string
@@ -7,6 +9,9 @@ type MyReviewPostCardData = {
 
 
 export default function MyReviewPostCard({imageURL, title, categories, id}: MyReviewPostCardData) {
+
+    // const navigate = useNavigate()
+
   return (
     <div key={id} className="w-72 h-136 rounder-lg shadow-sm bg-white  mt-10 overflow-hiddern">
 
