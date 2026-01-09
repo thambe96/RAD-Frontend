@@ -20,10 +20,9 @@ export default function ReviewPostCard({imageURL, title, categories, id}: Review
   // const inWishlist = wishlist?.includes(id)
   // const inWishlist = wishlist?.some(item => item._id === id)
   // const wishlistIds = wishlist.map(item => item.favouriteMovieReviews._id)
-  const wishlistIds = wishlist
+  // const wishlistIds = wishlist
   
-
-  const inWishlist = wishlistIds.includes(id)
+  const inWishlist = wishlist.includes(id)
 
   const {user} = useAuth()
   const userId: string = user?._id

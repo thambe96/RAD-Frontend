@@ -52,7 +52,14 @@ const wishlistSlice = createSlice( {
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchWishlist.fulfilled, (state, action) => {
-            state.items = action.payload ?? []
+            // state.items = action.payload ?? []
+
+            state.items = action.payload ? action.payload.map(
+                (item: any) => item.favouriteMovieReviews._id
+            ) : []
+
+
+
         }).addCase(addToWishlist.fulfilled, (state, action) => {
             state.items.push(action.payload)
         }).addCase(removeFromWishlist.fulfilled, (state, action) => {
