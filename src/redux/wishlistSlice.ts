@@ -5,6 +5,7 @@ import { fethWishListData, addToWishList, removeFromWishList } from "../services
 
 interface WishListState {
     items: string[],
+    fullItems: any[],
     loading: boolean
 
 }
@@ -12,6 +13,7 @@ interface WishListState {
 
 const initialState: WishListState = {
     items: [],
+    fullItems: [],
     loading: false
 
 }
@@ -58,12 +60,20 @@ const wishlistSlice = createSlice( {
                 (item: any) => item.favouriteMovieReviews._id
             ) : []
 
+            state.fullItems = action.payload ? action.payload.map((item: any) => item.favouriteMovieReviews) : []
+
 
 
         }).addCase(addToWishlist.fulfilled, (state, action) => {
             state.items.push(action.payload)
+
+            state.fullItems.push(action.payload)
+
         }).addCase(removeFromWishlist.fulfilled, (state, action) => {
             state.items = state.items.filter((id) => id !== action.payload)
+
+            state.fullItems = state.fullItems.filter((movie) => movie._id !== action.payload)
+
         })
     }
 })

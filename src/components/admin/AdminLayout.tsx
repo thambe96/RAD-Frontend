@@ -13,7 +13,7 @@ export default function AdminLayout() {
         <main className='flex-1'>
             <Outlet />
         </main>
-        <footer className='bg-blue-500 h-10'>
+        <footer className='bg-purple-200 h-10 flex flex-col justify-center'>
             <Footer />
         </footer >
     </ div >

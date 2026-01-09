@@ -65,7 +65,98 @@ export default function Register() {
   return (
     <div>
 
-        <h2 className="mb-10 text-center p-3 bg-cyan-500">Hi this is register page !!</h2>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="bg-white shadow-lg rounded-lg p-8 w-[28rem]">
+                <h2 className="mb-10 text-center p-3 bg-purple-400 text-white text-xl font-bold rounded">
+                    Welcome To MovieCritic
+                </h2>
+
+            <form onSubmit={handleResistration} className="flex flex-col gap-6">
+            
+                <div className="flex justify-center">
+                    {preview ? (
+                    <img
+                        src={preview}
+                        alt="preview"
+                        className="w-24 h-24 object-cover rounded-full  mb-5 cursor-pointer hover:opacity-80 transition"
+                        onClick={() => fileInputRef.current?.click()}
+                    />
+                    ) : (
+                    <div
+                        className="w-24 h-24 flex items-center justify-center text-gray-500 bg-gray-200 rounded-full  border-cyan-500 mb-5 cursor-pointer hover:bg-gray-300 transition"
+                        onClick={() => fileInputRef.current?.click()}
+                    >
+                        Upload
+                    </div>
+                    )}
+                    <input
+                    type="file"
+                    accept="image/*"
+                    ref={fileInputRef}
+                    className="hidden"
+                    onChange={handleUserImage}
+                    />
+                </div>
+
+           
+                    <input
+                        type="text"
+                        placeholder="First Name"
+                        value={firstname}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Last Name"
+                        value={lastname}
+                        onChange={(e) => setLastName(e.target.value)}
+                        className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    />
+
+            
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`px-4 py-2 rounded text-white font-semibold flex items-center justify-center gap-2 transition duration-200
+                        ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-purple-400 hover:bg-blue-700"}`}
+                    >
+                        {loading ? (
+                        <div className="flex items-center justify-center gap-2">
+                            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            <span>Registering...</span>
+                        </div>
+                        ) : (
+                            "Register"
+                        )}
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        {/* <h2 className="mb-10 text-center p-3 bg-cyan-500">Hi this is register page !!</h2>
         <form onSubmit={handleResistration} className="flex flex-col gap-10">
 
             <div className="flex justify-center">
@@ -103,7 +194,7 @@ export default function Register() {
                 
             </button>
         </form>
-        
+         */}
         
     </div>
   )

@@ -7,6 +7,11 @@ export default function AdminNavBar() {
     <>
 
       <div className="f-full w-full flex justify-between items-center gap-5 bg-purple-200">
+
+        <div className="flex items-center gap-5 mr-20 mx-20">
+            <UserDetails />
+        </div>
+
         <div className="flex gap-4 ml-20">
           <NavLink to={'managerequests'}>Requests</NavLink>
           <NavLink to={'manageprofiles'}>Profiles</NavLink>
@@ -16,7 +21,7 @@ export default function AdminNavBar() {
 
         <div className="flex items-center gap-5 mr-20">
           <LogoutBtn />
-          <UserDetails />
+          
         </div>
       
       </div>

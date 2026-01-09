@@ -21,7 +21,7 @@ export default function UserNavaBar() {
             <NavLink to={'/userLayout/userHome'}  className={navLinkStyels}>Home</NavLink>
             <NavLink to={'/userLayout/contributors'} className={navLinkStyels}>Contributors</NavLink>
             <NavLink to={'/userLayout/donation'} className={navLinkStyels}>Donation</NavLink>
-            {user?.status === "DEFAULT" && <NavLink to={'/userLayout/wishlist'} className={navLinkStyels}>Wish-list</NavLink>}
+            <NavLink to={'/userLayout/wishlist'} className={navLinkStyels}>Wish-list</NavLink>
             {user?.status === "APPROVED" && <NavLink to={'/userLayout/myreviews'} className={navLinkStyels}>My-review</NavLink>}
             {user?.status === "APPROVED" &&  <NavLink to={'/userLayout/addreview'}className={navLinkStyels}>Add-Review</NavLink>}
         </div>

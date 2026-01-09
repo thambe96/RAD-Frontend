@@ -72,7 +72,7 @@ export const getMyMovieReviews = async (contributorId: string) => {
 export const getMovieReviewById = async (movieId: string) => {
     try {
 
-        alert("Id : " + movieId)
+        // alert("Id : " + movieId)
 
         const movieDetail = await api.get(`/movieReviewPost/getMovieReviewById/${movieId}`)
         return movieDetail.data

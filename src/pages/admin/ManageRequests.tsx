@@ -60,12 +60,12 @@ export default function ManageRequests() {
       const fetchResults = async () => {
 
           try {
-              alert("userId: " + userId)
+              // alert("userId: " + userId)
               const res =  await approveContributorReq(userId, "APPROVED")
               console.log("APPROVED USER: ", res)
               // setUser(res)
           } catch (err) {
-              alert("faild request")
+              // alert("faild request")
               console.error(err)
           }
           

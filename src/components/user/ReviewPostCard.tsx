@@ -65,13 +65,18 @@ export default function ReviewPostCard({imageURL, title, categories, id}: Review
           }
 
       </div>
+      
 
-      <button 
-        onClick={toggleWishlist}
-        className= {`px-4 py-2 rounded ${inWishlist ? "bg-red-500": "bg-green-500"}`}
-        >
-          {inWishlist ? "Remove" : "add"}
-      </button>
+      <div className="flex items-center justify-center mt-4 mb-2">
+          <button 
+            onClick={toggleWishlist}
+            className= {`px-3 py-1 text-sm rounded-full ${inWishlist ? "bg-red-400": "bg-green-300"}`}
+          >
+            {inWishlist ? "Remove-Wishlist" : "Add-Wishlist"}
+          </button>
+
+      </div>
+ 
 
     </div>
   )

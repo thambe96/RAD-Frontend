@@ -30,10 +30,33 @@ export default function Contributors() {
   return (
     <div>
         
-        <h1 className="p-2 bg-purple-300 text-center">Contributors</h1>
+    
 
         {
-            contributors && contributors.map(contributor => <div>{contributor?.firstname}</div>)
+            // contributors && contributors.map(contributor => <div>{contributor?.firstname}</div>)
+
+        <div className="p-6">
+            <h2 className="text-2xl font-bold mb-6">Contributors</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {contributors.map((contributor) => (
+            <div
+                key={contributor._id}
+                className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center hover:shadow-lg transition-shadow duration-300"
+            >
+                <img
+                src={contributor.imageURL}
+                alt={`${contributor.firstname} ${contributor.lastname}`}
+                className="w-24 h-24 rounded-full object-cover mb-4 border-2 border-purple-400"
+                />
+                    <h3 className="text-lg font-semibold text-gray-800">
+                    {contributor.firstname} {contributor.lastname}
+                    </h3>
+                </div>
+                ))}
+            </div>
+        </div>
+
         }
 
 
